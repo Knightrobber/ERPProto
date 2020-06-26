@@ -1127,6 +1127,7 @@ import {
   </View>
     <Text>Saturday</Text>
   </View>
+                <Button title="Save To Database" onPress={()=>{this.saveToDatabase()}}/>
                 <Button title="Go to home" onPress={()=>{this.props.navigation.navigate('Auth')}} />
                 
             </View>

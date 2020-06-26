@@ -13,10 +13,6 @@ import {
   import auth from '@react-native-firebase/auth';
   import { GoogleSignin, GoogleSigninButton, statusCodes } from '@react-native-community/google-signin';
   
-  GoogleSignin.configure({
-    webClientId: '200641316322-5n2hgjl773t0sr5pis0mvtguc57t3nkl',
-  });
-  
 
   export default class Login extends Component{
     constructor(){
@@ -24,18 +20,22 @@ import {
         this.state = {
             email:'',
             user:'',
+            googleEmail:'',
             password:'',
             loggedIn: false,
-            userInfo:''
+            userInfo:'',
+            ID:''
         }
     }
 
     componentDidMount(){
         GoogleSignin.configure({
+            scopes: ['https://www.googleapis.com/auth/drive.readonly'],
             webClientId: '200641316322-5n2hgjl773t0sr5pis0mvtguc57t3nkl.apps.googleusercontent.com',
             offlineAccess: true, 
             hostedDomain: '', 
             forceConsentPrompt: true, 
+            accountName: '',
           });
     }
     login(){
@@ -48,8 +48,9 @@ import {
                 this.setState({
                     user:user.user.email
                 },()=>{
-                  console.log(this.state.user)
+                  
                   this.props.navigation.navigate("Teacher");
+                  
                 })
             }).catch((error)=>{
                 Alert.alert(error.message);
@@ -59,21 +60,39 @@ import {
         
 
     }
-
+  
     signIn = async () => {
         try {
+          console.log("trying")
           await GoogleSignin.hasPlayServices();
           const userInfo = await GoogleSignin.signIn();
-          this.setState({ userInfo: userInfo, loggedIn: true });
+          this.setState({ userInfo: userInfo, loggedIn: true, googleEmail:userInfo.user.email},()=>{
+            let googleEmail = this.state.googleEmail;
+            console.log("user signed in " + googleEmail);
+            googleEmail = googleEmail.split("@");
+            if(googleEmail[0].includes(".")){
+            googleEmail[0] = googleEmail[0].replace(/[.]/g,"+") 
+            console.log("ID " + googleEmail[0])
+            this.setState({ID:googleEmail[0]});
+          }
+            else{
+              this.setState({ID:googleEmail[0]}); console.log("ID " + googleEmail[0]);
+            }
+          });
+          this.props.navigation.navigate('Teacher');
         } catch (error) {
           if (error.code === statusCodes.SIGN_IN_CANCELLED) {
             // user cancelled the login flow
+            console.log(error.code);
           } else if (error.code === statusCodes.IN_PROGRESS) {
             // operation (f.e. sign in) is in progress already
+            console.log(error.code);
           } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
             // play services not available or outdated
+            console.log(error.code);
           } else {
             // some other error happened
+            console.log(error);
           }
         }
       };
@@ -98,7 +117,7 @@ import {
                   style={{ width: 192, height: 48 }}
                   size={GoogleSigninButton.Size.Wide}
                   color={GoogleSigninButton.Color.Dark}
-                  onPress={this.signIn}
+                  onPress={()=>{this.signIn()}}
                  />
             </Content>
         </Container>
@@ -107,7 +126,7 @@ import {
 
     }
   }
-
+/*
   async function onGoogleButtonPress() {
   // Get the users ID token
   const { idToken } = await GoogleSignin.signIn();
@@ -118,3 +137,4 @@ import {
   // Sign-in the user with the credential
   return auth().signInWithCredential(googleCredential);
 }
+*/
