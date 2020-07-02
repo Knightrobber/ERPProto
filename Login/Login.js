@@ -113,6 +113,7 @@ import {
                     <Input secureTextEntry={true} placeholder="Password" onChangeText = {(password)=>{this.setState({password:password})}}/>
                 </InputGroup>
                 <Button title="Login" style={{color:'green'}} color="green" onPress={()=>{this.login()}}/>
+                <Button title="Move TO Add courses" onPress={()=>{this.props.navigation.navigate('Student')}}/>
                 <GoogleSigninButton
                   style={{ width: 192, height: 48 }}
                   size={GoogleSigninButton.Size.Wide}

@@ -9,7 +9,7 @@ import {
     Button
   } from 'react-native';
   
-  export default class CheckAttendance extends Component{
+  export default class CourseList extends Component{
     render(){
         return(
             <View>

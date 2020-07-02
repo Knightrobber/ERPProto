@@ -30,6 +30,8 @@ import LoginStudent from './Login/LoginStudent.js';
 import AddCourses from './StudentTabs/AddCourses.js';
 import MarkAttendance from './StudentTabs/MarkAttendance.js';
 import CheckAttendance from './StudentTabs/CheckAttendance.js';
+import CourseList from './StudentTabs/CourseList.js';
+import SetHolidays from './TeacherTabs/SetHolidays.js';
 
 
 const Stack = createStackNavigator();
@@ -62,6 +64,7 @@ export default class App extends Component{
     <Tabs.Navigator>
       <Tabs.Screen name="FindFreeSlots" component={FindFreeSlots}/>
       <Tabs.Screen name="TeachertTimeTable" component={TeacherTimeTable}/>
+      <Tabs.Screen name="Admin" component={SetHolidays}/>
     </Tabs.Navigator>
     );
   }
@@ -71,6 +74,7 @@ export default class App extends Component{
         <Tabs.Screen name="AddCourses" component={AddCourses}/>
         <Tabs.Screen name="MarkAttendance" component={MarkAttendance}/>
         <Tabs.Screen name="CheckAttendance" component={CheckAttendance}/>
+        <Tabs.Screen name="CourseList" component ={CourseList}/>
       </Tabs.Navigator>
     )
   }
@@ -87,7 +91,7 @@ export default class App extends Component{
   render(){
     return(
       <NavigationContainer>
-      {this.createHomeStack()}  
+      {this.createHomeStack()}
       </NavigationContainer>
     );
   }
