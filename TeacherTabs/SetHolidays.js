@@ -69,32 +69,31 @@ import {
         */
         return(
             <View>
-                <Text>Set Holidays</Text>
                 <View>
-                    <Text>Set Specific day holidays</Text>
+                    <Text>Set Holidays</Text>
                     <DatePicker date={this.state.dateHoliday} format="YYYY-MM-DD" onDateChange={(date) => {this.setState({dateHoliday: date})}}  mode="date" placeholder="select date" />
-                    <Button title="Set holiday" onPress={()=>{this.setHoliday()}} />
+                    <Button title="Set Date" onPress={()=>{this.setHoliday()}} />
                 </View>
                 <View style={{flexDirection:'column'}}>
                     <Text>The following holidays have been set</Text>
                     <Text numberOfLines= {5}>{this.state.holidays}</Text>
                 </View>
                 <DatePicker date={this.state.holidayDelete} format="YYYY-MM-DD" onDateChange={(date) => {this.setState({holidayDelete: date})}}  mode="date" placeholder="select date" />
-                <Button title="Delete Holiday" onPress = {()=>{this.deleteHoliday()}}/>
+                <Button title="Delete Date" onPress = {()=>{this.deleteHoliday()}}/>
 
                 <View style={{flexDirection:'column'}}>
-                    <Text>Set Beginning and End date Of sem</Text>
+                    <Text>Set Semester Dates</Text>
                     <View style={{flexDirection:'row'}}>
-                    <Text>Set Beginning date</Text>
+                    <Text>Beginning date</Text>
                     <DatePicker date={this.state.dateBegin} format="YYYY-MM-DD" onDateChange={(date) => {this.setState({dateBegin: date})}}  mode="date" placeholder="select date" />
                     </View>
                     <View style={{flexDirection:'column'}}>
                         <View style={{flexDirection:'row'}}>
-                        <Text>Set End Date OF MIDSEM</Text>
+                        <Text>Date of MIDSEM</Text>
                         <DatePicker date={this.state.dateEndMid} format="YYYY-MM-DD" onDateChange={(date) => {this.setState({dateEndMid: date})}}  mode="date" placeholder="select date" />
                         </View>
                         <View style={{flexDirection:'row'}}>
-                        <Text>Set End Date of ENDSEM</Text>
+                        <Text>Date of ENDSEM</Text>
                         <DatePicker date={this.state.dateEndEnd} format="YYYY-MM-DD" onDateChange={(date) => {this.setState({dateEndEnd: date})}}  mode="date" placeholder="select date" />
                         </View>
                     </View>

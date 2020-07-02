@@ -83,10 +83,8 @@ import {Dropdown} from 'react-native-material-dropdown';
                
                <Dropdown data={daysOfTheWeekObj} value={this.state.dayOfTheWeek} onChangeText={(day)=>{this.setState({dayOfTheWeek:day},()=>{console.log(this.state.dayOfTheWeek)})}} label="Day Of the week" 
                 style={{width:100}} useNativeDriver={true}/>
-                <Button title="Find Courses" onPress={()=>{this.parentFindCourses()}}/>
-                <Button title="Find Free Slots" onPress={()=>{this.startProcession()}}/>
+                <Button title="Go" onPress={()=>{this.startProcession()}}/>
                 <Text>{this.state.freeTimings}</Text>
-                <Button title="SignOut" onPress={()=>{this.signOut()}}/>
               </Form>
             </Content>
           </Container>
